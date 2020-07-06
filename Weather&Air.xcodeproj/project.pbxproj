@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A770217024B313B40043D1D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770216F24B313B40043D1D0 /* Constants.swift */; };
+		A770217424B315DB0043D1D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770217324B315DB0043D1D0 /* NetworkManager.swift */; };
 		A7F30834249F759E005E1A11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F30833249F759E005E1A11 /* AppDelegate.swift */; };
 		A7F30836249F759E005E1A11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F30835249F759E005E1A11 /* SceneDelegate.swift */; };
 		A7F30838249F759E005E1A11 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F30837249F759E005E1A11 /* ViewController.swift */; };
 		A7F3083B249F759E005E1A11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F30839249F759E005E1A11 /* Main.storyboard */; };
 		A7F3083D249F75A2005E1A11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F3083C249F75A2005E1A11 /* Assets.xcassets */; };
 		A7F30840249F75A2005E1A11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F3083E249F75A2005E1A11 /* LaunchScreen.storyboard */; };
+		A7F30848249F7E5D005E1A11 /* ViewController+alertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F30847249F7E5D005E1A11 /* ViewController+alertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A770216F24B313B40043D1D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A770217324B315DB0043D1D0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7F30830249F759E005E1A11 /* Weather&Air.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather&Air.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F30833249F759E005E1A11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F30835249F759E005E1A11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		A7F3083C249F75A2005E1A11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7F3083F249F75A2005E1A11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7F30841249F75A2005E1A11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7F30847249F7E5D005E1A11 /* ViewController+alertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+alertController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,58 @@
 		A7F30832249F759E005E1A11 /* Weather&Air */ = {
 			isa = PBXGroup;
 			children = (
-				A7F30833249F759E005E1A11 /* AppDelegate.swift */,
-				A7F30835249F759E005E1A11 /* SceneDelegate.swift */,
-				A7F30837249F759E005E1A11 /* ViewController.swift */,
-				A7F30839249F759E005E1A11 /* Main.storyboard */,
-				A7F3083C249F75A2005E1A11 /* Assets.xcassets */,
-				A7F3083E249F75A2005E1A11 /* LaunchScreen.storyboard */,
-				A7F30841249F75A2005E1A11 /* Info.plist */,
+				A7F3084C24A0C25C005E1A11 /* Models */,
+				A7F3084A249F7F20005E1A11 /* Views */,
+				A7F3084B24A0C217005E1A11 /* View Controllers */,
+				A7F30849249F7E6C005E1A11 /* Extensions */,
+				A7F3084D24A0C387005E1A11 /* Supporting files */,
 			);
 			path = "Weather&Air";
+			sourceTree = "<group>";
+		};
+		A7F30849249F7E6C005E1A11 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7F30847249F7E5D005E1A11 /* ViewController+alertController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7F3084A249F7F20005E1A11 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7F30839249F759E005E1A11 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A7F3084B24A0C217005E1A11 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7F30837249F759E005E1A11 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A7F3084C24A0C25C005E1A11 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A770217324B315DB0043D1D0 /* NetworkManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A7F3084D24A0C387005E1A11 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				A770216F24B313B40043D1D0 /* Constants.swift */,
+				A7F3083E249F75A2005E1A11 /* LaunchScreen.storyboard */,
+				A7F30833249F759E005E1A11 /* AppDelegate.swift */,
+				A7F30835249F759E005E1A11 /* SceneDelegate.swift */,
+				A7F3083C249F75A2005E1A11 /* Assets.xcassets */,
+				A7F30841249F75A2005E1A11 /* Info.plist */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A770217424B315DB0043D1D0 /* NetworkManager.swift in Sources */,
+				A770217024B313B40043D1D0 /* Constants.swift in Sources */,
 				A7F30838249F759E005E1A11 /* ViewController.swift in Sources */,
+				A7F30848249F7E5D005E1A11 /* ViewController+alertController.swift in Sources */,
 				A7F30834249F759E005E1A11 /* AppDelegate.swift in Sources */,
 				A7F30836249F759E005E1A11 /* SceneDelegate.swift in Sources */,
 			);
@@ -285,8 +337,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XJ45PTT4WB;
-				INFOPLIST_FILE = "Weather&Air/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Weather&Air/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,8 +356,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XJ45PTT4WB;
-				INFOPLIST_FILE = "Weather&Air/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Weather&Air/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
