@@ -25,32 +25,24 @@ struct NetworkManager {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
-                switch requestType {
-                case .weather: self.parseJSONWeather(withData: data)
-                case .air: self.parseJSONAir(withData: data)
-                }
+                self.parseJSON(withData: data, requestType: requestType)
             }
         }
         task.resume()
     }
     
-    func parseJSONWeather(withData data: Data) {
+    func parseJSON(withData data: Data, requestType: RequestType) {
         let decoder = JSONDecoder()
         do {
-            let currentWeatherData = try decoder.decode(CurrentWeatherData.self,
-                                                        from: data)
-            print(currentWeatherData.main.temp)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func parseJSONAir(withData data: Data) {
-        let decoder = JSONDecoder()
-        do {
-            let currentWeatherData = try decoder.decode(CurrentAirData.self,
-                                                        from: data)
-            print(currentWeatherData.data.aqi)
+            switch requestType {
+            case .weather:
+                let currentWeatherData = try decoder.decode(CurrentWeatherData.self,
+                                                            from: data)
+                print(currentWeatherData.main.temp)
+            case .air: let currentAirData = try decoder.decode(CurrentAirData.self,
+                                                               from: data)
+            print(currentAirData.data.aqi)
+            }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
