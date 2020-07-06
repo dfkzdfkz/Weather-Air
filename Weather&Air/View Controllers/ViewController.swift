@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         presentSearchAlertController(withTitle: "Enter city name",
                                      message: nil,
                                      style: .alert) { city in
-                                        self.networkManager.fetchWeather(forCity: city)
-                                        self.networkManager.fetchAir(forCity: city)
+                                        self.networkManager.fetchRequest(forCity: city, requestType: .weather)
+                                        self.networkManager.fetchRequest(forCity: city, requestType: .air)
         }
         
     }

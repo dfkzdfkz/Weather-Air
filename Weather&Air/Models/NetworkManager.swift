@@ -10,32 +10,31 @@ import Foundation
 
 struct NetworkManager {
     
-    func fetchWeather(forCity city: String) {
-        
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(apiWeatherKey)"
+    enum RequestType {
+        case weather
+        case air
+    }
+    
+    func fetchRequest(forCity city: String, requestType: RequestType) {
+        var urlString = ""
+        switch requestType {
+        case .weather: urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(apiWeatherKey)"
+        case .air: urlString = "https://api.waqi.info/feed/\(city)/?token=\(apiAirKey)"
+        }
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
-                self.parseJSON(withData: data)
+                switch requestType {
+                case .weather: self.parseJSONWeather(withData: data)
+                case .air: self.parseJSONAir(withData: data)
+                }
             }
         }
         task.resume()
     }
     
-    func fetchAir(forCity city: String) {
-        let urlString = "https://api.waqi.info/feed/\(city)/?token=\(apiAirKey)"
-        guard let url = URL(string: urlString) else { return }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, error in
-            if let data = data {
-                self.parseJSONAir(withData: data)
-            }
-        }
-        task.resume()
-    }
-    
-    func parseJSON(withData data: Data) {
+    func parseJSONWeather(withData data: Data) {
         let decoder = JSONDecoder()
         do {
             let currentWeatherData = try decoder.decode(CurrentWeatherData.self,
