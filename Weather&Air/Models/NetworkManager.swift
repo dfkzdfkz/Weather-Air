@@ -15,7 +15,7 @@ struct NetworkManager {
         case air
     }
     
-    func fetchRequest(forCity city: String, requestType: RequestType) {
+    func fetchRequest(forCity city: String, requestType: RequestType, completionHandler: @escaping (CurrentStateProtocol) -> Void ) {
         var urlString = ""
         switch requestType {
         case .weather: urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(apiWeatherKey)"
@@ -25,27 +25,33 @@ struct NetworkManager {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
-                self.parseJSON(withData: data, requestType: requestType)
+                guard let currentState = self.parseJSON(withData: data, requestType: requestType) else { return }
+                completionHandler(currentState)
             }
         }
         task.resume()
     }
-    
-    func parseJSON(withData data: Data, requestType: RequestType) {
+       
+    func parseJSON(withData data: Data, requestType: RequestType) -> CurrentStateProtocol? {
         let decoder = JSONDecoder()
+        var currentState: CurrentStateProtocol?
         do {
             switch requestType {
             case .weather:
                 let currentWeatherData = try decoder.decode(CurrentWeatherData.self,
                                                             from: data)
-                print(currentWeatherData.main.temp)
-            case .air: let currentAirData = try decoder.decode(CurrentAirData.self,
-                                                               from: data)
-            print(currentAirData.data.aqi)
+                guard let current = CurrentWeather(currentWeatherData: currentWeatherData) else { return nil }
+                currentState = current
+            case .air:
+                let currentAirData = try decoder.decode(CurrentAirData.self,
+                                                        from: data)
+                guard let current = CurrentAir(currentAirData: currentAirData) else { return nil }
+                currentState = current
             }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        return currentState
     }
     
 }
