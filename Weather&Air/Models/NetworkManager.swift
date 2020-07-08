@@ -18,7 +18,7 @@ struct NetworkManager {
     func fetchRequest(forCity city: String, requestType: RequestType, completionHandler: @escaping (CurrentStateProtocol) -> Void ) {
         var urlString = ""
         switch requestType {
-        case .weather: urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(apiWeatherKey)"
+        case .weather: urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(apiWeatherKey)&units=metric"
         case .air: urlString = "https://api.waqi.info/feed/\(city)/?token=\(apiAirKey)"
         }
         guard let url = URL(string: urlString) else { return }

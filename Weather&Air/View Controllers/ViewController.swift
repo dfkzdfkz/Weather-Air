@@ -27,19 +27,35 @@ class ViewController: UIViewController {
         
         presentSearchAlertController(withTitle: "Enter city name",
                                      message: nil,
-                                     style: .alert) { city in
+                                     style: .alert) { [unowned self] city in
                                         self.networkManager.fetchRequest(forCity: city, requestType: .weather) { currentState in
                                             if let currentWeather = currentState as? CurrentWeather {
-                                                print(currentWeather.cityName)
+                                                self.updateInterfaceWith(weather: currentWeather)
                                             }
                                         }
                                         self.networkManager.fetchRequest(forCity: city, requestType: .air) { currentState in
                                             if let currentAir = currentState as? CurrentAir {
-                                                print(currentAir.aqi)
+                                                self.updateInterfaceWith(air: currentAir)
                                             }
                                         }
         }
         
+    }
+    
+    func updateInterfaceWith(weather: CurrentWeather) {
+        DispatchQueue.main.async {
+            self.cityLabel.text = weather.cityName
+            self.temperatureNowLabel.text = "t " + weather.temperatureString + " °C"
+            self.temperatureFeelsLabel.text = "t feels like " + weather.temperatureFeelsLikeString + " °C"
+            self.weatherIcon.image = UIImage(systemName: weather.systemIconNameString)
+        }
+    }
+        
+    
+    func updateInterfaceWith(air: CurrentAir) {
+        DispatchQueue.main.async {
+            self.airQualityLabel.text = "\(air.aqi) AQI"
+        }
     }
     
 }
