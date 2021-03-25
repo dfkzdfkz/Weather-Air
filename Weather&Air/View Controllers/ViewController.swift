@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var temperatureFeelsLabel: UILabel!
     @IBOutlet weak var airQualityLabel: UILabel!
     
+    @IBOutlet weak var switchButton: UIButton!
+    
+    
     let networkManager = NetworkManager()
     lazy var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
@@ -50,6 +53,11 @@ class ViewController: UIViewController {
                                             }
                                         }
         }
+        
+    }
+    
+    @IBAction func switchButtonPressed(_ sender: UIButton) {
+//        по нажатию меняет с календаря на часы и обратно и меняет картинку на кнопке и активирует другой стеквью для почасового
         
     }
     
